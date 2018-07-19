@@ -46,8 +46,6 @@ let mapleader = ","
 
 " leaders for vim
 map <leader>g gg=G
-map <leader>l :vsp<CR>
-map <leader>sv :source ~/.vimrc<CR>
 map <leader>q :q<CR>
 map <leader>s :w<CR>
 map <leader>o o<Esc>
@@ -76,14 +74,12 @@ map <leader>par o<%= render partial: '' %><Esc>2ba
 map <leader>bind obinding.pry<Esc>
 
 " leaders for rails testing
-map <leader>rexp oexpect().to eq()<Esc>8hi
+map <leader>rexp oexpect().to eq()<Esc>14hi
+map <leader>rdesc odesc '' do<Esc>9hi
+map <leader>rit oit '' do<Esc>9hi
 
 " leaders for javascript
 map <leader>con oconsole.log()<Esc>i
 
 " leaders for html
 map<leader>div o<div></div><Esc>5hi
-
-
-
-

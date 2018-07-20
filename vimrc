@@ -1,59 +1,40 @@
 set nocompatible
 filetype off
 
-" vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'thoughtbot/vim-rspec'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" pathogen
-execute pathogen#infect()
-
-" move through panes
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" nerd tree
-" open nerdtree on startup and move cursor to file
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-" close vim if nerdtree is the only window
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 set number relativenumber
+set commentstring
 
 syntax on
-
 colorscheme desert
 
+set t_Co=256
+call plug#begin('~/.vim/bundle')
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+call plug#end()
+
 "ctrl p
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$',
-\ 'file': '\.so$\|\.dat$|\.DS_Store$'
-\ }
 let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
 
 let mapleader = ","
 
 " leaders for vim
+" this command uses vim-commentary
+map <leader>/ gcc
+
 map <leader>g gg=G
+map <leader>l :vsp<CR>
 map <leader>q :q<CR>
-map <leader>s :w<CR>
+map <leader>s magg=G`a:w<CR>
 map <leader>o o<Esc>
 map <leader>O O<Esc>
-
-" leaders for git
-map <leader>gs :Gstatus<CR>
-map <leader>gc :Gcommit<CR>
+" this command uses CtrlP
+map <leader>C :CtrlPClearAllCaches<cr>
+" this command uses NerdTree
+map <leader>c :set norelativenumber nonumber<CR>:NERDTreeFocus<CR>:q<CR>
+map <leader>num :set relativenumber number<CR>
+map <leader>n :NERDTreeFocus<CR>
 
 " leaders for react
 map <leader>imp iimport React from 'react'<Esc>
@@ -71,15 +52,40 @@ map <leader>exp oexpect().to<Esc>3hi
 
 " leaders for rails
 map <leader>par o<%= render partial: '' %><Esc>2ba
-map <leader>bind obinding.pry<Esc>
+map <leader>bind orequire 'pry'<CR>binding.pry<Esc>
 
 " leaders for rails testing
-map <leader>rexp oexpect().to eq()<Esc>14hi
-map <leader>rdesc odesc '' do<Esc>9hi
-map <leader>rit oit '' do<Esc>9hi
+map <leader>rexp oexpect().to eq()<Esc>8hi
+map <leader>rdesc odesc '' do<Esc>3hi
+map <leader>rit oit '' do<Esc>3hi
 
 " leaders for javascript
 map <leader>con oconsole.log()<Esc>i
 
 " leaders for html
 map<leader>div o<div></div><Esc>5hi
+
+" vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'mileszs/ack.vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" pathogen
+execute pathogen#infect()
+
+" nerd tree
+" open nerdtree on startup and move cursor to file
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+" " close vim if nerdtree is the only window
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+" b:NERDTree.isTabTree()) | q | endif
+
+let NERDTreeDirArrowExpandable='+'
+let NERDTreeDirArrowCollapsible='~'
+set mouse+=a

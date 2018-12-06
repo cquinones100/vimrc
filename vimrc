@@ -21,7 +21,10 @@ let mapleader = ","
 
 " leaders for vim
 " this command uses vim-commentary
-map <leader>/ gcc
+map <leader>/ gcc<ESC>
+
+" leader to split hash into new lines
+map <leader>x f,lxi<CR><ESC>
 
 map <leader>g gg=G
 map <leader>l :vsp<CR>

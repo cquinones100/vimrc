@@ -4,10 +4,14 @@ filetype off
 set number relativenumber
 set commentstring
 
+set shiftwidth=2
+set ruler
+
 syntax on
 colorscheme desert
 
 set t_Co=256
+
 call plug#begin('~/.vim/bundle')
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -22,15 +26,21 @@ let mapleader = ","
 " leaders for vim
 " this command uses vim-commentary
 map <leader>/ gcc<ESC>
+map <leader>sv :source ~/.vimrc<CR>
+map <leader>ind =<CR>
 
 " leader to split hash into new lines
-map <leader>x f,lxi<CR><ESC>
+map <leader>x V:s/, /,\r/g<CR>
 
+" leader to split line with spaces into new lines
+map <leader>z f<Space>lxi<CR><ESC>
+
+map <leader>i magg=G`a
 map <leader>g gg=G
 map <leader>l :vsp<CR>
 map <leader>q :q<CR>
-map <leader>s magg=G`a:w<CR>
-map <leader>o o<Esc>
+map <leader>s :w<CR>
+" map <leader>o o<Esc>
 map <leader>O O<Esc>
 " this command uses CtrlP
 map <leader>C :CtrlPClearAllCaches<cr>
@@ -59,8 +69,13 @@ map <leader>bind orequire 'pry'<CR>binding.pry<Esc>
 
 " leaders for rails testing
 map <leader>rexp oexpect().to eq()<Esc>8hi
-map <leader>rdesc odesc '' do<Esc>3hi
-map <leader>rit oit '' do<Esc>3hi
+map <leader>rdesc odescribe '' do<CR>end<Esc>k3h9la
+map <leader>rcont ocontext '' do<CR>end<Esc>k3h8la
+map <leader>rit oit '' do<CR>end<Esc>k3h3la
+map <Leader>ij :call search('it')<CR>
+map <Leader>ik ?it<CR>
+map <Leader>dj :call search('describe')<CR>
+map <Leader>dk ?describe<CR>
 
 " leaders for javascript
 map <leader>con oconsole.log()<Esc>i
@@ -68,12 +83,18 @@ map <leader>con oconsole.log()<Esc>i
 " leaders for html
 map<leader>div o<div></div><Esc>5hi
 
+" RSpec.vim mappings
+map <Leader>rt :call RunCurrentSpecFile()<CR>
+map <Leader>rs :call RunNearestSpec()<CR>
+map <Leader>rl :call RunLastSpec()<CR>
+map <Leader>ra :call RunAllSpecs()<CR>
+
 " vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'mileszs/ack.vim'
+Plugin 'thoughtbot/vim-rspec'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

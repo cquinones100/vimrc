@@ -7,6 +7,9 @@ set commentstring
 set shiftwidth=2
 set ruler
 
+set tabstop=2 shiftwidth=2 expandtab
+set backupcopy=yes
+
 syntax on
 colorscheme desert
 
@@ -26,6 +29,7 @@ let mapleader = ","
 " leaders for vim
 " this command uses vim-commentary
 map <leader>/ gcc<ESC>
+
 map <leader>sv :source ~/.vimrc<CR>
 map <leader>ind =<CR>
 
@@ -40,10 +44,40 @@ map <leader>g gg=G
 map <leader>l :vsp<CR>
 map <leader>q :q<CR>
 map <leader>s :w<CR>
+
+function! SearchForFocus()
+  let found = 'false'
+  let ruby_focuses = ['fit', 'fdescribe', 'fcontext', 'fsubject']
+
+  for i in ruby_focuses
+    :call search(i)
+  endfor
+endfunction
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" search in file
+map <leader>f ?
+
+" search for ruby test focuses
+map <leader>fit :call SearchForFocus()<Cr>
+
+"add comma to end of line
+map <leader>f, $a,<Esc>
+
+map <leader>x :s/, /,\r/g<CR>
+map <leader>z :s/=>/ => /g<CR>
+
 " map <leader>o o<Esc>
 map <leader>O O<Esc>
+
 " this command uses CtrlP
 map <leader>C :CtrlPClearAllCaches<cr>
+
 " this command uses NerdTree
 map <leader>c :set norelativenumber nonumber<CR>:NERDTreeFocus<CR>:q<CR>
 map <leader>num :set relativenumber number<CR>
@@ -94,6 +128,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'chemzqm/vim-jsx-improve'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'thoughtbot/vim-rspec'
 
 call vundle#end()            " required

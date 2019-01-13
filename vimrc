@@ -1,6 +1,10 @@
 set nocompatible
 filetype off
 
+let g:NERDTreeNodeDelimiter = "\u00a0"
+
+set encoding=UTF-8
+
 set number relativenumber
 set commentstring
 
@@ -19,6 +23,7 @@ set t_Co=256
 call plug#begin('~/.vim/bundle')
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 "ctrl p

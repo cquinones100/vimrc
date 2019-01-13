@@ -6,6 +6,7 @@ set commentstring
 
 set shiftwidth=2
 set ruler
+set laststatus=2
 
 set tabstop=2 shiftwidth=2 expandtab
 set backupcopy=yes
@@ -47,7 +48,7 @@ map <leader>s :w<CR>
 
 function! SearchForFocus()
   let found = 'false'
-  let ruby_focuses = ['fit', 'fdescribe', 'fcontext', 'fsubject']
+  let ruby_focuses = ['fit ', 'fdescribe ', 'fcontext ', 'fsubject ']
 
   for i in ruby_focuses
     :call search(i)
@@ -55,10 +56,10 @@ function! SearchForFocus()
 endfunction
 
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>rt :call RunCurrentSpecFile()<CR>
+" map <Leader>rs :call RunNearestSpec()<CR>
+map <Leader>rl :call RunLastSpec()<CR>
+map <Leader>ra :call RunAllSpecs()<CR>
 
 " search in file
 map <leader>f ?
@@ -132,6 +133,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -149,4 +151,7 @@ autocmd VimEnter * wincmd p
 
 let NERDTreeDirArrowExpandable='+'
 let NERDTreeDirArrowCollapsible='~'
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<C-m>'
 set mouse+=a

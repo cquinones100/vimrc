@@ -16,15 +16,9 @@ set tabstop=2 shiftwidth=2 expandtab
 set backupcopy=yes
 
 syntax on
-colorscheme desert
+colorscheme slate
 
 set t_Co=256
-
-call plug#begin('~/.vim/bundle')
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'ryanoasis/vim-devicons'
-call plug#end()
 
 "ctrl p
 let g:ctrlp_max_files=0
@@ -139,6 +133,9 @@ Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

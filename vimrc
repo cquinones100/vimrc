@@ -136,6 +136,7 @@ Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'joker1007/vim-ruby-heredoc-syntax'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

@@ -14,22 +14,25 @@ colorscheme slate
 
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'VundleVim/Vundle.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'chemzqm/vim-jsx-improve'
-Bundle 'vim-syntastic/syntastic'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'JamshedVesuna/vim-markdown-preview'
-Bundle 'pangloss/vim-javascript'
-Bundle 'maxmellon/vim-jsx-pretty'
-Bundle 'joker1007/vim-ruby-heredoc-syntax'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'ervandew/supertab.git'
+Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'chemzqm/vim-jsx-improve'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'joker1007/vim-ruby-heredoc-syntax'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ervandew/supertab.git'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
@@ -49,7 +52,7 @@ map <leader>/ gcc<ESC>
 map <leader>rmf :!rm %<CR>,q<CR>
 
 " copy and paste to sytem clipboard
-map <leader>c :!pbcopy<CR><CR>u
+map <leader>c :!pbcopy<CR>u<CR>
 map <leader>p :!pbpaste<CR><CR>
 
 " source vimrc

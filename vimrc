@@ -8,8 +8,11 @@ set laststatus=2
 set tabstop=2 shiftwidth=2 expandtab
 set backupcopy=yes
 set mouse+=a
+set textwidth=80
+set colorcolumn=+0
+set cursorcolumn
 
-syntax on
+syntax enable
 colorscheme slate
 
 filetype off                   " required!
@@ -30,6 +33,7 @@ Plugin 'joker1007/vim-ruby-heredoc-syntax'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab.git'
+Plugin 'tpope/vim-fugitive.git'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -37,11 +41,7 @@ filetype plugin indent on    " required
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
-filetype plugin indent on 
-
 let g:NERDTreeNodeDelimiter = "\u00a0"
-
-"set encoding=UTF-8
 
 let mapleader = ","
 
@@ -82,7 +82,6 @@ endfunction
 
 map <leader>fit :call SearchForFocus()<Cr>
 
-
 " this command uses CtrlP
 map <leader>C :CtrlPClearAllCaches<cr>
 
@@ -96,6 +95,8 @@ map <leader>bind orequire 'pry'<CR>binding.pry<Esc>
 " open nerdtree on startup and move cursor to file
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+autocmd VimEnter * highlight ColorColumn ctermbg=0 guibg=lightgrey
+autocmd VimEnter * highlight CursorColumn ctermbg=0 guibg=lightgrey
 
 "ctrl p
 let g:ctrlp_max_files=0

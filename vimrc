@@ -8,37 +8,40 @@ set laststatus=2
 set tabstop=2 shiftwidth=2 expandtab
 set backupcopy=yes
 set mouse+=a
+set textwidth=80
+set colorcolumn=+0
+set cursorcolumn
 
-syntax on
+syntax enable
 colorscheme slate
 
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'VundleVim/Vundle.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'chemzqm/vim-jsx-improve'
-Bundle 'vim-syntastic/syntastic'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'JamshedVesuna/vim-markdown-preview'
-Bundle 'pangloss/vim-javascript'
-Bundle 'maxmellon/vim-jsx-pretty'
-Bundle 'joker1007/vim-ruby-heredoc-syntax'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'ervandew/supertab.git'
+Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'chemzqm/vim-jsx-improve'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'joker1007/vim-ruby-heredoc-syntax'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ervandew/supertab.git'
+Plugin 'tpope/vim-fugitive.git'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
-filetype plugin indent on 
-
 let g:NERDTreeNodeDelimiter = "\u00a0"
-
-"set encoding=UTF-8
 
 let mapleader = ","
 
@@ -79,7 +82,6 @@ endfunction
 
 map <leader>fit :call SearchForFocus()<Cr>
 
-
 " this command uses CtrlP
 map <leader>C :CtrlPClearAllCaches<cr>
 
@@ -93,6 +95,8 @@ map <leader>bind orequire 'pry'<CR>binding.pry<Esc>
 " open nerdtree on startup and move cursor to file
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+autocmd VimEnter * highlight ColorColumn ctermbg=0 guibg=lightgrey
+autocmd VimEnter * highlight CursorColumn ctermbg=0 guibg=lightgrey
 
 "ctrl p
 let g:ctrlp_max_files=0

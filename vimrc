@@ -1,6 +1,5 @@
 set nocompatible               " be iMproved
 set number relativenumber
-set commentstring
 set clipboard=unnamed
 set shiftwidth=2
 set ruler
@@ -11,6 +10,7 @@ set mouse+=a
 set textwidth=80
 set colorcolumn=+0
 set cursorcolumn
+set noswapfile
 
 syntax enable
 colorscheme slate
@@ -34,6 +34,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab.git'
 Plugin 'tpope/vim-fugitive.git'
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -55,8 +56,7 @@ map <leader>rmf :!rm %<CR>,q<CR>
 map <leader>c :!pbcopy<CR>u<CR>
 map <leader>p :!pbpaste<CR><CR>
 
-" source vimrc
-map <leader>sv :source ~/.vimrc<CR>
+map <leader>sv :source ~/.vimrc<CR>:call SetColorAndCursorColumn()<CR>
 
 " reindent
 map <leader>ind =<CR>
@@ -82,6 +82,8 @@ endfunction
 
 map <leader>fit :call SearchForFocus()<Cr>
 
+map <leader>: 0f:xea: 
+
 " this command uses CtrlP
 map <leader>C :CtrlPClearAllCaches<cr>
 
@@ -91,12 +93,18 @@ set t_Co=256
 
 map <leader>bind orequire 'pry'<CR>binding.pry<Esc>
 
-" nerd tree
-" open nerdtree on startup and move cursor to file
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-autocmd VimEnter * highlight ColorColumn ctermbg=0 guibg=lightgrey
-autocmd VimEnter * highlight CursorColumn ctermbg=0 guibg=lightgrey
+function! SetColorAndCursorColumn() 
+  highlight ColorColumn ctermbg=0 guibg=lightgrey
+  highlight CursorColumn ctermbg=0 guibg=lightgrey
+endfunction
+
+function! RunStartupScript() 
+  NERDTree
+  wincmd p
+  :call SetColorAndCursorColumn()
+endfunction
+
+autocmd VimEnter * :call RunStartupScript()
 
 "ctrl p
 let g:ctrlp_max_files=0

@@ -11,9 +11,11 @@ set textwidth=80
 set colorcolumn=+0
 set cursorcolumn
 set noswapfile
+au BufNewFile,BufRead *.jbuilder set ft=ruby
 
 syntax enable
-colorscheme slate
+set background=dark
+colorscheme solarized
 
 filetype off                   " required!
 
@@ -35,6 +37,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab.git'
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'altercation/vim-colors-solarized.git'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -81,6 +84,22 @@ function! SearchForFocus()
 endfunction
 
 map <leader>fit :call SearchForFocus()<Cr>
+
+function! GoToSpec()
+  let current_path = expand('%:p')
+  let relative_path = split(current_path, 'app/')[-1]
+  let prefix = ['spec/']
+  let suffix = ['_spec.rb']
+  let extension_stripped_path = [split(relative_path, '.rb')[0]]
+
+  let concatenated_path = prefix + extension_stripped_path + suffix
+
+  let spec_path = join(concatenated_path, '')
+
+  :execute "vsp" spec_path
+endfunction
+
+map <leader>spec :call GoToSpec()<CR>
 
 map <leader>: 0f:xea: 
 

@@ -101,6 +101,17 @@ endfunction
 
 map <leader>spec :call GoToSpec()<CR>
 
+function! OpenKnotchProjectInBrowser()
+  let current_path = expand('%:p')
+  let parent_directory = 'knotch/'
+  let project_path = split(current_path, parent_directory)[-1]
+  let project_name = split(project_path, '/')[0]
+
+  :call system('chrome-cli open ' . 'https://github.com/KnotchLabs/' . project_name)
+endfunction
+
+map <leader>kgh :call OpenKnotchProjectInBrowser()<Cr>
+
 map <leader>: 0f:xea: 
 
 " this command uses CtrlP

@@ -114,6 +114,22 @@ endfunction
 
 map <leader>kgh :call OpenKnotchProjectInBrowser()<Cr>
 
+function! GitAddCurrentFile()
+  let current_path = expand('%:p')
+
+  :call system('git add ' . current_path)
+endfunction
+
+map <leader>add :call GitAddCurrentFile()<CR>
+
+function! GitCheckoutCurrentFile()
+  let current_path = expand('%:p')
+
+  :call system('git checkout -- ' . current_path)
+endfunction
+
+map <leader>checkout :call GitCheckoutCurrentFile()<CR>
+
 map <leader>: 0f:xea: 
 
 " this command uses CtrlP

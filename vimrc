@@ -38,6 +38,8 @@ Plugin 'ervandew/supertab.git'
 Plugin 'tpope/vim-fugitive.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'rhysd/vim-crystal'
+Plugin 'christoomey/vim-tmux-runner'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -133,6 +135,9 @@ function! RunStartupScript()
   wincmd p
   :call SetColorAndCursorColumn()
 endfunction
+
+map <leader>runner :VtrOpenRunner<CR>
+map <leader>send :VtrSendLinesToRunner<CR>
 
 autocmd VimEnter * :call RunStartupScript()
 

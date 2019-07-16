@@ -44,6 +44,13 @@ Plugin 'christoomey/vim-tmux-runner'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" let g:indentguides_tabchar = '|'
+
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_auto_colors = 0
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=blue   ctermbg=9
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=blue ctermbg=8
+
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
@@ -73,6 +80,7 @@ map <leader>q :q<CR>
 map <leader>s :w<CR>
 
 map <leader>rs :vertical resize +5<CR>
+map <leader>rss :vertical resize 80<CR>
 map <leader>rl :vertical resize -5<CR>
 
 " search for ruby test focuses
@@ -152,8 +160,9 @@ function! RunStartupScript()
   :call SetColorAndCursorColumn()
 endfunction
 
-map <leader>runner :VtrOpenRunner<CR>
+map <leader>runner :VtrOpenRunner { "orientation": "h" }<cr>
 map <leader>send :VtrSendLinesToRunner<CR>
+map <leader>killrunner :VtrKillRunner<cr>
 
 autocmd VimEnter * :call RunStartupScript()
 

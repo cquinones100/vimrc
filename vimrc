@@ -164,6 +164,40 @@ map <leader>runner :VtrOpenRunner { "orientation": "h" }<cr>
 map <leader>send :VtrSendLinesToRunner<CR>
 map <leader>killrunner :VtrKillRunner<cr>
 
+function! FindInstanceVariables()
+  :normal o
+  :normal o
+  :normal iprivate
+  :normal o
+  :normal o
+
+  let array = []
+  let currentPos = getpos('.')
+  
+  :call search("@")
+
+  while index(array, expand("<cword>")) == -1
+    :call add(array, expand("<cword>"))
+
+    :call search("@")
+  endwhile
+
+  :call setpos('.', currentPos)
+
+  :normal iattr_reader
+
+  for i in array
+    :call append(line('.'), ":")
+    :normal J
+    :call append(line('.'), i)
+    :normal Jx
+  endfor
+
+  :normal ,ind
+endfunction
+
+map <leader>aa :call FindInstanceVariables()<CR>
+
 autocmd VimEnter * :call RunStartupScript()
 
 "ctrl p
